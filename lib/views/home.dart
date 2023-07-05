@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:minutes_tracker/constants/constants.dart';
 import 'CreateMeeting.dart';
 import 'search.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'login.dart';
 
 
 void main(){
@@ -10,8 +12,8 @@ void main(){
 }
 
 class Home extends StatelessWidget {
-  const Home({super.key});
-
+  Home({super.key});
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(body: SingleChildScrollView(
@@ -26,7 +28,7 @@ class Home extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Home",style: kBlackHeadingSize,),
-              ElevatedButton(onPressed: (){}, child: Text("Log Out"),style: ButtonStyle(
+              ElevatedButton(onPressed: (){_auth.signOut();Get.off(()=>Login());}, child: Text("Log Out"),style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10), // Set the border radius value

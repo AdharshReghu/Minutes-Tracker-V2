@@ -3,6 +3,7 @@ import 'package:minutes_tracker/constants/constants.dart';
 import 'package:get/get.dart';
 import 'package:minutes_tracker/views/home.dart';
 import 'Register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 void main(){
@@ -12,6 +13,9 @@ void main(){
 
 class Login extends StatelessWidget {
   final _loginkey = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
+  late String email;
+  late String password;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +39,10 @@ class Login extends StatelessWidget {
                     Align(child: Text("Email",style: kGreyTextStyle,),alignment: Alignment.centerLeft,),
                     SizedBox(height: 10,),
                     TextFormField(
+                      onChanged: (value){
+                        email = value;
+
+                      },
                         keyboardType: TextInputType.emailAddress,
                         textAlign: TextAlign.center,
                       validator: (value) {
@@ -52,6 +60,9 @@ class Login extends StatelessWidget {
                     Align(child: Text("Password",style: kGreyTextStyle,),alignment: Alignment.centerLeft,),
                     SizedBox(height: 10,),
                     TextFormField(
+                      onChanged: (value){
+                        password= value;
+                      },
                         textAlign: TextAlign.center,
                       validator: (value) {
                         if (value!.isEmpty){
@@ -75,9 +86,18 @@ class Login extends StatelessWidget {
                           backgroundColor: MaterialStateProperty.all<Color>(kMaintheme), // Set the background color
                           fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)), // Set the size
                         ),
-                        onPressed: () {
+                        onPressed: () async  {
                           if (_loginkey.currentState!.validate()) {
-                            Get.offAll(()=>Home());
+                            try {
+                              final user = await _auth
+                                  .signInWithEmailAndPassword(
+                                  email: email, password: password);
+                              if (user != null) {
+                                Get.off(() => Home());
+                              }
+                            }catch(e){
+                              Get.snackbar("Error", "Login Failed");
+                            }
                           }
 
                         },
