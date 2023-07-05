@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(home: SafeArea(child: Scaffold(body: SingleChildScrollView(
+    return SafeArea(child: Scaffold(body: SingleChildScrollView(
       child: Container(
         color: kMaintheme,
         padding: const EdgeInsets.all(20),
@@ -50,6 +50,6 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
-    ),),),) ;
+    ),),);
   }
 }
