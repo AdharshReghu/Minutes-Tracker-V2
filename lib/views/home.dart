@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:minutes_tracker/constants/constants.dart';
 import 'CreateMeeting.dart';
+import 'search.dart';
 
 
 void main(){
@@ -37,7 +38,7 @@ class Home extends StatelessWidget {
             ],
           ),
             SizedBox(height: 30,),
-            InkWell(child: Container(child: Image.asset('./assets/search.png'),),onTap: (){},),
+            InkWell(child: Container(child: Image.asset('./assets/search.png'),),onTap: (){Get.to(()=>search());},),
             SizedBox(height: 5,),
             Text("Search",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
             SizedBox(height: 30,),

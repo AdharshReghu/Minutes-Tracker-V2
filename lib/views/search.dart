@@ -1,71 +1,88 @@
 import 'package:flutter/material.dart';
 import 'package:minutes_tracker/constants/constants.dart';
 import 'package:get/get.dart';
-import 'package:minutes_tracker/models/meetingCardModel.dart';
-import 'package:minutes_tracker/models/meetingList.dart';
+import 'package:minutes_tracker/views/searchMeetID.dart';
+import 'searchdate.dart';
+import 'searchSubject.dart';
 
-void main() {
-  runApp(SearchID());
+void main(){
+  runApp(search());
 }
 
-class SearchID extends StatelessWidget {
-  const SearchID({Key? key}) : super(key: key);
+class search extends StatelessWidget {
+  const search({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          body: SingleChildScrollView(
-            child: Container(
-              color: Colors.white,
-              padding: EdgeInsets.all(20),
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                children: [
-                  Align(
-                    child: Text(
-                      "Search With Meet ID",
-                      style: kBlackHeadingSize,
-                    ),
-                    alignment: Alignment.topLeft,
+    return SafeArea(child: Scaffold(body: Container(
+      color: Colors.white,
+      padding: EdgeInsets.all(20),
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        //mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Align(alignment:Alignment.topLeft,child: Text("Search",style: kBlackHeadingSize,)),
+          SizedBox(height: 100,),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // Set the border radius value
                   ),
-                  SizedBox(height: 30),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        Icon(Icons.search, size: 50, color: kMaintheme),
-                        SizedBox(width: 10),
-                        Expanded(
-                          child: TextFormField(
-                            decoration: kTextFieldCreate.copyWith(
-                              hintText: "Enter MEET ID here",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 50),
-                  Container(
-                    height: 500,
-                    width: double.infinity,
-                    child: PageView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: meetingCards.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return SizedBox(height: 500,child: meetings(),);
-
-                  },
-                    ),
-                  ),
-                ],
+                ),
+                backgroundColor: MaterialStateProperty.all<Color>(kMaintheme), // Set the background color
+                fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)), // Set the size
               ),
+              onPressed: () {
+                Get.to(()=>SearchID());
+              },
+              child: Text("Search with Meet ID",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
             ),
           ),
-        ),
+          SizedBox(height: 50,),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // Set the border radius value
+                  ),
+                ),
+                backgroundColor: MaterialStateProperty.all<Color>(kMaintheme), // Set the background color
+                fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)), // Set the size
+              ),
+              onPressed: () {
+                Get.to(()=>SearchSub());
+              },
+              child: Text("Search with Subject Name",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
+            ),
+          ),
+          SizedBox(height: 50,),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // Set the border radius value
+                  ),
+                ),
+                backgroundColor: MaterialStateProperty.all<Color>(kMaintheme), // Set the background color
+                fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)), // Set the size
+              ),
+              onPressed: () {
+                Get.to(()=>searchDate());
+              },
+              child: Text("Search with Date",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
+            ),
+          ),
+        ],
       ),
-    );
+    ),),);
   }
 }
