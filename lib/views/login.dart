@@ -11,21 +11,20 @@ void main(){
 
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  final _loginkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(body: SingleChildScrollView(
-          child: Container(
-            color: Colors.white,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+          child: Form(
+            key: _loginkey,
             child: Container(
-              padding: EdgeInsets.all(20),
-              height: double.infinity,
-              child:  Form(
-                child: Column(
+              color: Colors.white,
+              width: MediaQuery.of(context).size.width,
+              child: Container(
+                padding: EdgeInsets.all(20),
+                child:  Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -36,12 +35,28 @@ class Login extends StatelessWidget {
                     Align(child: Text("Email",style: kGreyTextStyle,),alignment: Alignment.centerLeft,),
                     SizedBox(height: 10,),
                     TextFormField(
+                      // validator: (value) {
+                      //   if (value!.isEmpty ||
+                      //       !RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+                      //           .hasMatch(value)) {
+                      //     return "Enter Correct E-mail";
+                      //   } else {
+                      //     return null;
+                      //   }
+                      // },
                       decoration: kTextFieldDecoration.copyWith(hintText: "Enter Your Email")
                     ),
                     SizedBox(height: 25,),
                     Align(child: Text("Password",style: kGreyTextStyle,),alignment: Alignment.centerLeft,),
                     SizedBox(height: 10,),
                     TextFormField(
+                      // validator: (value) {
+                      //   if (value!.isEmpty){
+                      //     return "Enter Password";
+                      //   } else {
+                      //     return null;
+                      //   }
+                      // },
                         decoration: kTextFieldDecoration.copyWith(hintText: "Enter Your Password")
                     ),
                     SizedBox(height: 30),
@@ -58,6 +73,9 @@ class Login extends StatelessWidget {
                           fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)), // Set the size
                         ),
                         onPressed: () {
+                          // if (_loginkey.currentState!.validate()) {
+                          //   Get.offAll(()=>Home());
+                          // }
                           Get.offAll(()=>Home());
                         },
                         child: Text("Log In",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),

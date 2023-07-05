@@ -23,7 +23,7 @@ class search extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         //mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Align(alignment:Alignment.topLeft,child: Text("Search",style: kBlackHeadingSize,)),
+          const Align(alignment:Alignment.topLeft,child: Text("Search",style: kBlackHeadingSize,)),
           SizedBox(height: 100,),
           SizedBox(
             width: double.infinity,
@@ -40,7 +40,7 @@ class search extends StatelessWidget {
               onPressed: () {
                 Get.to(()=>SearchID());
               },
-              child: Text("Search with Meet ID",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
+              child: const Text("Search with Meet ID",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
             ),
           ),
           SizedBox(height: 50,),
@@ -59,7 +59,7 @@ class search extends StatelessWidget {
               onPressed: () {
                 Get.to(()=>SearchSub());
               },
-              child: Text("Search with Subject Name",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
+              child: const Text("Search with Subject Name",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
             ),
           ),
           SizedBox(height: 50,),
@@ -78,7 +78,7 @@ class search extends StatelessWidget {
               onPressed: () {
                 Get.to(()=>searchDate());
               },
-              child: Text("Search with Date",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
+              child: const Text("Search with Date",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
             ),
           ),
         ],
