@@ -35,28 +35,31 @@ class Login extends StatelessWidget {
                     Align(child: Text("Email",style: kGreyTextStyle,),alignment: Alignment.centerLeft,),
                     SizedBox(height: 10,),
                     TextFormField(
-                      // validator: (value) {
-                      //   if (value!.isEmpty ||
-                      //       !RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
-                      //           .hasMatch(value)) {
-                      //     return "Enter Correct E-mail";
-                      //   } else {
-                      //     return null;
-                      //   }
-                      // },
+                        keyboardType: TextInputType.emailAddress,
+                        textAlign: TextAlign.center,
+                      validator: (value) {
+                        if (value!.isEmpty ||
+                            !RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+                                .hasMatch(value)) {
+                          return "Enter Correct E-mail";
+                        } else {
+                          return null;
+                        }
+                      },
                       decoration: kTextFieldDecoration.copyWith(hintText: "Enter Your Email")
                     ),
                     SizedBox(height: 25,),
                     Align(child: Text("Password",style: kGreyTextStyle,),alignment: Alignment.centerLeft,),
                     SizedBox(height: 10,),
                     TextFormField(
-                      // validator: (value) {
-                      //   if (value!.isEmpty){
-                      //     return "Enter Password";
-                      //   } else {
-                      //     return null;
-                      //   }
-                      // },
+                        textAlign: TextAlign.center,
+                      validator: (value) {
+                        if (value!.isEmpty){
+                          return "Enter Password";
+                        } else {
+                          return null;
+                        }
+                      },
                         decoration: kTextFieldDecoration.copyWith(hintText: "Enter Your Password")
                     ),
                     SizedBox(height: 30),
@@ -73,10 +76,10 @@ class Login extends StatelessWidget {
                           fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)), // Set the size
                         ),
                         onPressed: () {
-                          // if (_loginkey.currentState!.validate()) {
-                          //   Get.offAll(()=>Home());
-                          // }
-                          Get.offAll(()=>Home());
+                          if (_loginkey.currentState!.validate()) {
+                            Get.offAll(()=>Home());
+                          }
+
                         },
                         child: Text("Log In",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
                       ),

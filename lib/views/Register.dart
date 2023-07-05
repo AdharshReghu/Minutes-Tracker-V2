@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:minutes_tracker/constants/constants.dart';
+import 'package:minutes_tracker/views/home.dart';
 import 'login.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main(){
   runApp( Register());
@@ -9,9 +11,12 @@ void main(){
 
 
 class Register extends StatelessWidget {
+  final _auth = FirebaseAuth.instance;
+  late String email;
+  late String password;
+  late String name;
   final _Registerkey = GlobalKey<FormState>();
 
-  Register({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +47,13 @@ class Register extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     TextFormField(
+                      keyboardType: TextInputType.name,
+                      textAlign: TextAlign.center,
+                      onChanged: (value){
+                        name= value;
+                      },
                       validator: (value) {
-                        if (value!.isEmpty ||
-                            !RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                        if (value!.isEmpty ) {
                           return "Enter Correct Name";
                         } else {
                           return null;
@@ -59,6 +68,11 @@ class Register extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      textAlign: TextAlign.center,
+                      onChanged: (value){
+                        email= value;
+                      },
                       validator: (value) {
                         if (value!.isEmpty ||
                             !RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
@@ -77,6 +91,10 @@ class Register extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     TextFormField(
+                      textAlign: TextAlign.center,
+                      onChanged: (value){
+                        password= value;
+                      },
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Enter Password";
@@ -99,9 +117,21 @@ class Register extends StatelessWidget {
                           backgroundColor: MaterialStateProperty.all<Color>(kMaintheme),
                           fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)),
                         ),
-                        onPressed: () {
+                        onPressed: () async{
                           if (_Registerkey.currentState!.validate()) {
                             // Perform registration logic here
+                            try {
+                              final newUser = await _auth
+                                  .createUserWithEmailAndPassword(
+                                  email: email, password: password);
+                              if(newUser != null)
+                                {
+                                  Get.snackbar("Success", "Account Registered Successfully");
+                                  Get.off(()=>Home());
+                                }
+                            }catch(e){
+                              Get.snackbar("Error", "$e");
+                            }
                           }
                         },
                         child: Text(
