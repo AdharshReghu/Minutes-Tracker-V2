@@ -59,7 +59,7 @@ class Login extends StatelessWidget {
                         onPressed: () {
                           // Button press action
                         },
-                        child: Text("Get Started",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
+                        child: Text("Log In",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
                       ),
                     ),
                     SizedBox(height: 30),

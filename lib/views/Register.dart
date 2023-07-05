@@ -29,8 +29,12 @@ class Register extends StatelessWidget {
                 children: [
                   const Text("Welcome Onboard !",style: TextStyle(fontSize:30,fontWeight: FontWeight.w600),),
                   const SizedBox(height: 30,),
-                  Image.asset("./assets/login.png"),
-                  SizedBox(height: 30,),
+                  Align(child: Text("Name",style: kGreyTextStyle,),alignment: Alignment.centerLeft,),
+                  SizedBox(height: 10,),
+                  TextFormField(
+                      decoration: kTextFieldDecoration.copyWith(hintText: "Enter Your Full Name")
+                  ),
+                  SizedBox(height: 25,),
                   Align(child: Text("Email",style: kGreyTextStyle,),alignment: Alignment.centerLeft,),
                   SizedBox(height: 10,),
                   TextFormField(
@@ -40,7 +44,7 @@ class Register extends StatelessWidget {
                   Align(child: Text("Password",style: kGreyTextStyle,),alignment: Alignment.centerLeft,),
                   SizedBox(height: 10,),
                   TextFormField(
-                      decoration: kTextFieldDecoration.copyWith(hintText: "Enter Your Password")
+                      decoration: kTextFieldDecoration.copyWith(hintText: "Create Your Password")
                   ),
                   SizedBox(height: 30),
                   Container(
