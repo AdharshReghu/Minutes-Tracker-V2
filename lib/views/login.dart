@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minutes_tracker/constants/constants.dart';
 import 'package:get/get.dart';
+import 'package:minutes_tracker/views/home.dart';
 import 'Register.dart';
 
 
@@ -57,7 +58,7 @@ class Login extends StatelessWidget {
                           fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)), // Set the size
                         ),
                         onPressed: () {
-                          // Button press action
+                          Get.offAll(()=>Home());
                         },
                         child: Text("Log In",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
                       ),

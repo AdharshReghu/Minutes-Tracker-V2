@@ -29,3 +29,7 @@ const TextStyle kGreyTextStyle = TextStyle(
   fontWeight: FontWeight.w500,
   color: Color(0xff878080),
 );
+
+
+const TextStyle kBlackHeadingSize = TextStyle(
+    fontSize: 25, color: Colors.black, fontWeight: FontWeight.w700); //black
