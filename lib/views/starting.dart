@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'login.dart';
 
 void main(){
   runApp( Starting());
@@ -8,7 +10,7 @@ class Starting  extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(body: Container(
+    return Scaffold(body: Container(
       color: Color(0x906366FF),
       width: MediaQuery.of(context).size.height,
       height:  MediaQuery.of(context).size.height,
@@ -44,7 +46,7 @@ class Starting  extends StatelessWidget {
                   fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)), // Set the size
                 ),
                 onPressed: () {
-                  // Button press action
+                  Get.off(()=>Login());
                 },
                 child: Text("Get Started",style: TextStyle(fontSize: 20,color: Color(0xFF6366FF),fontWeight: FontWeight.w600)),
               ),
@@ -52,6 +54,6 @@ class Starting  extends StatelessWidget {
           ],
         ),
       ),
-    ),),);
+    ),);
   }
 }
