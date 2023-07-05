@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:minutes_tracker/constants/constants.dart';
+import 'CreateMeeting.dart';
 
 
 void main(){
@@ -40,7 +41,7 @@ class Home extends StatelessWidget {
             SizedBox(height: 5,),
             Text("Search",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
             SizedBox(height: 30,),
-            InkWell(child: Container(child: Image.asset('./assets/createM.png'),),onTap: (){},),
+            InkWell(child: Container(child: Image.asset('./assets/createM.png'),),onTap: (){Get.to(()=>CreateMeet());},),
             SizedBox(height: 5,),
             Text("Create Meeting",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
             SizedBox(height: 30,),

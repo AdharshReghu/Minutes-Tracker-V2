@@ -9,31 +9,31 @@ void main(){
 
 
 class CreateMeet extends StatelessWidget {
-  String? pdfPath;
+  // String? pdfPath;
 
-  Future<void> handlePDFSelection(BuildContext context) async {
-    try {
-      FilePickerResult? result = await FilePicker.platform.pickFiles(
-        type: FileType.custom,
-        allowedExtensions: ['pdf'],
-      );
-
-      if (result != null && result.files.isNotEmpty) {
-        PlatformFile file = result.files.first;
-        pdfPath = file.path;
-        Get.snackbar("Success","$pdfPath");
-      }
-    } catch (e) {
-      // Error handling
-      Get.snackbar("Error","'Error selecting PDF: $e'");
-      print('Error selecting PDF: $e');
-    }
-  }
+  // Future<void> handlePDFSelection(BuildContext context) async {
+  //   try {
+  //     FilePickerResult? result = await FilePicker.platform.pickFiles(
+  //       type: FileType.custom,
+  //       allowedExtensions: ['pdf'],
+  //     );
+  //
+  //     if (result != null && result.files.isNotEmpty) {
+  //       PlatformFile file = result.files.first;
+  //       pdfPath = file.path;
+  //       Get.snackbar("Success","$pdfPath");
+  //     }
+  //   } catch (e) {
+  //     // Error handling
+  //     Get.snackbar("Error","'Error selecting PDF: $e'");
+  //     print('Error selecting PDF: $e');
+  //   }
+  // }
 
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(home: SafeArea(child: Scaffold(body: SingleChildScrollView(
+    return  SafeArea(child: Scaffold(body: SingleChildScrollView(
       child: Container(
         padding: EdgeInsets.all(20),
         color: Colors.white,
@@ -79,17 +79,6 @@ class CreateMeet extends StatelessWidget {
             SizedBox(height: 10,),
             TextFormField(maxLines: 10,decoration: kTextFieldCreate.copyWith(hintText: "Type Agenda Here", ),),
             SizedBox(height: 15),
-            Text("Upload PDF: ", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-            SizedBox(height: 10),
-            ElevatedButton(onPressed: (){handlePDFSelection(context);}, child: Text("Select PDF"),style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5), // Set the border radius value
-                ),
-              ),
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.blue), // Set the background color
-              fixedSize: MaterialStateProperty.all<Size>(Size(150, 25)), // Set the size
-            ),),
             SizedBox(height: 30,),
             SizedBox(
               width: double.infinity,
@@ -111,6 +100,6 @@ class CreateMeet extends StatelessWidget {
           ],
         ),
       ),
-    ),),),);
+    ),),);
   }
 }
