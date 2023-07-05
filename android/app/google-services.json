@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "824023893731",
+    "project_id": "minutes-tracker-42e86",
+    "storage_bucket": "minutes-tracker-42e86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824023893731:android:579bc3fcb29e4c470c67d6",
+        "android_client_info": {
+          "package_name": "com.example.minutes_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824023893731-trom84r25csnbe8r4e46ou8k0p2vriqr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo5GLCf4DK1dcco_4crYQwc8m4tfODm6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824023893731-trom84r25csnbe8r4e46ou8k0p2vriqr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
