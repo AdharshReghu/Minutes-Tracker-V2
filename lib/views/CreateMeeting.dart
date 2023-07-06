@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:minutes_tracker/constants/constants.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:minutes_tracker/views/home.dart';
 
 void main(){
   runApp(CreateMeet());
@@ -10,6 +13,30 @@ void main(){
 
 class CreateMeet extends StatelessWidget {
   final _meetkey = GlobalKey<FormState>();
+  late String subject;
+  late String agenda;
+  late String participants;
+  late String category;
+  late String time;
+  late String Noparticipants;
+  late String date;
+  late String location;
+  late String meetID;
+  late String uId;
+
+  String getCurrentUserId() {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+
+    if (user != null) {
+      String Useruid = user.uid;
+      return Useruid;
+    } else {
+      return '';
+    }
+  }
+
+
   // String? pdfPath;
 
   // Future<void> handlePDFSelection(BuildContext context) async {
@@ -49,6 +76,9 @@ class CreateMeet extends StatelessWidget {
               Text("Subject: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
               SizedBox(height: 10,),
               TextFormField(
+                onChanged: (value){
+                  subject=value;
+                },
                 validator: (value) {
                   if (value!.isEmpty){
                     return "Enter Subject";
@@ -59,7 +89,11 @@ class CreateMeet extends StatelessWidget {
               SizedBox(height: 15,),
               Text("Meet ID: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
               SizedBox(height: 10,),
-              TextFormField(validator: (value) {
+              TextFormField(
+                onChanged: (value){
+                  meetID=value;
+                },
+                validator: (value) {
                 if (value!.isEmpty){
                   return "Enter Meet ID";
                 } else {
@@ -69,7 +103,11 @@ class CreateMeet extends StatelessWidget {
               SizedBox(height: 15,),
               Text("Location: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
               SizedBox(height: 10,),
-              TextFormField(validator: (value) {
+              TextFormField(
+                onChanged: (value){
+                  location=value;
+                },
+                validator: (value) {
                 if (value!.isEmpty){
                   return "Enter Location";
                 } else {
@@ -79,7 +117,11 @@ class CreateMeet extends StatelessWidget {
               SizedBox(height: 15,),
               Text("Date: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
               SizedBox(height: 10,),
-              TextFormField(validator: (value) {
+              TextFormField(
+                onChanged: (value){
+                  date=value;
+                },
+                validator: (value) {
                 if (value!.isEmpty){
                   return "Enter Date";
                 } else {
@@ -89,7 +131,11 @@ class CreateMeet extends StatelessWidget {
               SizedBox(height: 15,),
               const Text("Time: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
               SizedBox(height: 10,),
-              TextFormField(validator: (value) {
+              TextFormField(
+                onChanged: (value){
+                  time=value;
+                },
+                validator: (value) {
                 if (value!.isEmpty){
                   return "Enter Time";
                 } else {
@@ -99,7 +145,11 @@ class CreateMeet extends StatelessWidget {
               SizedBox(height: 15,),
               Text("Category: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
               SizedBox(height: 10,),
-              TextFormField(validator: (value) {
+              TextFormField(
+                onChanged: (value){
+                  category=value;
+                },
+                validator: (value) {
                 if (value!.isEmpty){
                   return "Enter Category";
                 } else {
@@ -109,7 +159,11 @@ class CreateMeet extends StatelessWidget {
               SizedBox(height: 15,),
               Text("Number Of participants: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
               SizedBox(height: 10,),
-              TextFormField(validator: (value) {
+              TextFormField(
+                onChanged: (value){
+                  Noparticipants=value;
+                },
+                validator: (value) {
                 if (value!.isEmpty){
                   return "Enter the number participants";
                 } else {
@@ -119,7 +173,11 @@ class CreateMeet extends StatelessWidget {
               SizedBox(height: 15,),
               Text("Participants: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
               SizedBox(height: 10,),
-              TextFormField(validator: (value) {
+              TextFormField(
+                onChanged: (value){
+                  participants=value;
+                },
+                validator: (value) {
                 if (value!.isEmpty){
                   return "Enter the participants";
                 } else {
@@ -129,7 +187,11 @@ class CreateMeet extends StatelessWidget {
               SizedBox(height: 15,),
               Text("Agenda: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
               SizedBox(height: 10,),
-              TextFormField(validator: (value) {
+              TextFormField(
+                onChanged: (value){
+                  agenda=value;
+                },
+                validator: (value) {
                 if (value!.isEmpty){
                   return "Enter agenda";
                 } else {
@@ -150,11 +212,38 @@ class CreateMeet extends StatelessWidget {
                     backgroundColor: MaterialStateProperty.all<Color>(kMaintheme), // Set the background color
                     fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)), // Set the size
                   ),
-                  onPressed: () {
-                    if (_meetkey.currentState!.validate()) {
-                      // Perform registration logic here
-                    }
-                  },
+                    onPressed: () {
+                      if (_meetkey.currentState!.validate()) {
+                        // Perform registration logic here
+                        uId = getCurrentUserId();
+
+                        // Store data in Firestore
+                        FirebaseFirestore firestore = FirebaseFirestore.instance;
+                        CollectionReference meetsCollection = firestore.collection('Meet');
+
+                        meetsCollection.add({
+                          'subject': subject,
+                          'agenda': agenda,
+                          'participants': participants,
+                          'category': category,
+                          'time': time,
+                          'Number of participants': Noparticipants,
+                          'date': date,
+                          'location': location,
+                          'meetID': meetID,
+                          'uId': uId,
+                        }).then((value) {
+                          // Data successfully stored in Firestore
+                          Get.snackbar("Success", "Meet Created and Stored successfully");
+                          Get.offAll(()=>Home());
+                        }).catchError((error) {
+                          // Error occurred while storing data
+                          Get.snackbar("Error",'Failed to store data in Firestore: $error');
+                          print('Failed to store data in Firestore: $error');
+                        });
+                      }
+                    },
+
                   child: Text("Submit and Create ",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
                 ),
               ),
