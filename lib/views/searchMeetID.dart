@@ -5,7 +5,8 @@ import 'package:minutes_tracker/models/meetingCardModel.dart';
 import '../models/meetingList.dart';
 
 class SearchID extends StatelessWidget {
-  const SearchID({Key? key}) : super(key: key);
+   SearchID({Key? key}) : super(key: key);
+  final _searchkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,29 +21,41 @@ class SearchID extends StatelessWidget {
                 children: [
                   Align(
                     child: Text(
-                      "Search With Meet ID",
+                      "Search",
                       style: kBlackHeadingSize,
                     ),
                     alignment: Alignment.topLeft,
                   ),
-                  SizedBox(height: 30),
-                  SizedBox(
+                  SizedBox(height: 50),
+                  Align(alignment: Alignment.topLeft,child: Text("Search with MeetId or Date(DD-MMM-YY) or subject",style: kGreyTextStyle,)),
+                  SizedBox(height: 10),
+                  Container(
                     width: double.infinity,
                     child: Row(
                       children: [
-                        Icon(Icons.search, size: 50, color: kMaintheme),
-                        SizedBox(width: 10),
                         Expanded(
-                          child: TextFormField(
-                            decoration: kTextFieldCreate.copyWith(
-                              hintText: "Enter MEET ID here",
+                          child: Form(
+                            key: _searchkey,
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value!.isEmpty){
+                                  return "Enter Date,Subject or MeetID to search!";
+                                } else {
+                                  return null;
+                                }
+                              },
+                              decoration: kTextFieldCreate.copyWith(
+                                hintText: "Enter search term here",
+                              ),
                             ),
                           ),
                         ),
+                        SizedBox(width: 10),
+                        InkWell(child: Icon(Icons.search,size: 50,color: kMaintheme,),onTap: (){if (_searchkey.currentState!.validate()) {}})
                       ],
                     ),
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(height: 30),
                   Container(
                     height: 500,
                     width: double.infinity,
