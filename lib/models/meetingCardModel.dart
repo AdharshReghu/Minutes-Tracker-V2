@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
 class meetings extends StatelessWidget {
-  const meetings({
-    super.key,
-  });
+  String subject;
+  String meetId;
+  String agenda;
+  String time;
+  String date;
+  String participants;
+  String category;
+  String numberParticipants;
+  String location;
+
+  meetings({required this.subject,required this.agenda,required this.participants,required this.category,required this.time,required this.date,required this.location,required this.meetId,required this.numberParticipants}){
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,23 +34,23 @@ class meetings extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Align(child: Text("MEET ID: 123456",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),alignment: Alignment.center,),
+            Align(child: Text("MEET ID: $meetId",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),alignment: Alignment.center,),
             SizedBox(height: 20,),
-            Text("Subject : ",style: TextStyle(fontSize: 15),),
+            Text("Subject : $subject",style: TextStyle(fontSize: 15),),
             SizedBox(height: 10,),
-            Text("Location: Kochi",style: TextStyle(fontSize: 15),),
+            Text("Location: $location",style: TextStyle(fontSize: 15),),
             SizedBox(height: 10,),
-            Text("Date :",style: TextStyle(fontSize: 15),),
+            Text("Date: $date",style: TextStyle(fontSize: 15),),
             SizedBox(height: 10,),
-            Text("Time: ",style: TextStyle(fontSize: 15),),
+            Text("Time: $time",style: TextStyle(fontSize: 15),),
             SizedBox(height: 10,),
-            Text("Category: ",style: TextStyle(fontSize: 15),),
+            Text("Category: $category",style: TextStyle(fontSize: 15),),
             SizedBox(height: 10,),
-            Text("Number of participants: ",style: TextStyle(fontSize: 15),),
+            Text("Number of participants: $numberParticipants",style: TextStyle(fontSize: 15),),
             SizedBox(height: 10,),
-            Text("participants: ",style: TextStyle(fontSize: 15),),
+            Text("participants: $participants",style: TextStyle(fontSize: 15),),
             SizedBox(height: 10,),
-            Text("Agenda: ",style: TextStyle(fontSize: 15),),
+            Text("Agenda: $agenda",style: TextStyle(fontSize: 15),),
 
           ],
         ),
