@@ -41,6 +41,7 @@ dependencies:
   firebase_auth: ^4.6.3
   cloud_firestore: ^4.8.1
   easy_splash_screen: ^1.0.4
+  read_pdf_text: ^0.2.1
 
 dev_dependencies:
   flutter_test:
