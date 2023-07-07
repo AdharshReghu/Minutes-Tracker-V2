@@ -128,7 +128,7 @@ class Register extends StatelessWidget {
                               if(newUser != null)
                                 {
                                   Get.snackbar("Success", "Account Registered Successfully");
-                                  Get.off(()=>Home());
+                                  Get.off(()=>Login(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 500));
                                 }
                             }catch(e){
                               Get.snackbar("Error", "$e");

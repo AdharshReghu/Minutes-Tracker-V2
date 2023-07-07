@@ -94,7 +94,7 @@ class Login extends StatelessWidget {
                                   .signInWithEmailAndPassword(
                                   email: email, password: password);
                               if (user != null) {
-                                Get.off(() => Home());
+                                Get.off(() => Home(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 500));
                               }
                             }catch(e){
                               Get.snackbar("Error", "Login Failed");

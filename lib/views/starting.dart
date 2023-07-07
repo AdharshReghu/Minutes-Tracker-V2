@@ -46,7 +46,7 @@ class Starting  extends StatelessWidget {
                   fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)), // Set the size
                 ),
                 onPressed: () {
-                  Get.off(()=>Login());
+                  Get.off(()=>Login(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 500));
                 },
                 child: Text("Get Started",style: TextStyle(fontSize: 20,color: Color(0xFF6366FF),fontWeight: FontWeight.w600)),
               ),

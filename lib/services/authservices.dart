@@ -7,40 +7,26 @@ import 'package:minutes_tracker/views/starting.dart';
 import 'package:get/get.dart';
 import 'package:minutes_tracker/views/login.dart';
 
-class AuthService {
+
+  class AuthService {
   final _auth = FirebaseAuth.instance;
-  var Uid;
-  late bool hasAcc;
 
   HandleAuthState() {
-    return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
-        if (snapshot.hasData) {
-          return FutureBuilder<bool>(
-            future: checkIfProfileExist(snapshot.data!.uid),
-            builder:
-                (BuildContext context, AsyncSnapshot<bool> profileSnapshot) {
-              if (profileSnapshot.hasData && profileSnapshot.data!) {
-                return Home();
-              } else {
-                return Login();
-              }
-            },
-          );
-        } else {
-          return Starting();
-        }
-      },
-    );
+  return StreamBuilder<User?>(
+  stream: FirebaseAuth.instance.authStateChanges(),
+  builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
+  if (snapshot.connectionState == ConnectionState.waiting) {
+  return CircularProgressIndicator(); // Add a loading indicator while checking the user's authentication state
   }
 
-  Future<bool> checkIfProfileExist(String Uid) async {
-    final CollectionReference usersCollection =
-    FirebaseFirestore.instance.collection('users');
-    final QuerySnapshot snapshot =
-    await usersCollection.where('Uid', isEqualTo: Uid).get();
-    return snapshot.docs.isNotEmpty;
+  if (snapshot.hasData) {
+  return Home(); // Return the home page if the user is signed in
+  } else {
+  return Starting(); // Return the login page if the user is not signed in
+  }
+  },
+  );
+  }
   }
 
-}
+
