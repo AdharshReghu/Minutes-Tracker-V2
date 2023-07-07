@@ -14,35 +14,34 @@ class Scan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(home: SafeArea(child: Scaffold(body: SingleChildScrollView(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.all(20),
-        //height: MediaQuery.of(context).size.height,
-        child:Column(
-          children: [
-            Text("Scan PDFs",style: kBlackHeadingSize,),
-            SizedBox(height: 30,),
-          Container(child: Obx(() => Text(_controller.pdfText.value))),
-            ElevatedButton(
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10), // Set the border radius value
-                  ),
+    return GetMaterialApp(home: SafeArea(child: Scaffold(body: Container(
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.all(20),
+      height: MediaQuery.of(context).size.height,
+      child:Column(
+        children: [
+          Text("Scan PDFs",style: kBlackHeadingSize,),
+          SizedBox(height: 30,),
+          ElevatedButton(
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10), // Set the border radius value
                 ),
-                backgroundColor: MaterialStateProperty.all<Color>(kMaintheme), // Set the background color
-                fixedSize: MaterialStateProperty.all<Size>(Size(500, 50)), // Set the size
               ),
-              onPressed: ()   {
-                print("Select pdf");
-                _controller.selectPdf();
-              },
-              child: Text("Scan",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
+              backgroundColor: MaterialStateProperty.all<Color>(kMaintheme), // Set the background color
+              fixedSize: MaterialStateProperty.all<Size>(Size(500, 50)), // Set the size
             ),
-          ],
-        )
-      ),
+            onPressed: ()   {
+              print("Select pdf");
+              _controller.selectPdf();
+            },
+            child: Text("Select",style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w600)),
+          ),
+          SizedBox(height: 20,),
+          Container(child: Obx(() => Text(_controller.pdfText.value))),
+        ],
+      )
     ),),),);
   }
 }
