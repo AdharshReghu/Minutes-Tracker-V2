@@ -116,7 +116,7 @@ class search extends StatelessWidget {
                             },
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return "Enter Date, Subject, or MeetID to search!";
+                                return "Enter Data to search!";
                               } else {
                                 return null;
                               }

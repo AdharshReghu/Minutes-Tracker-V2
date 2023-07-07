@@ -91,6 +91,7 @@ class Register extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     TextFormField(
+                      obscureText: true,
                       textAlign: TextAlign.center,
                       onChanged: (value){
                         password= value;

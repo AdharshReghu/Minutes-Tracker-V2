@@ -60,6 +60,7 @@ class Login extends StatelessWidget {
                     Align(child: Text("Password",style: kGreyTextStyle,),alignment: Alignment.centerLeft,),
                     SizedBox(height: 10,),
                     TextFormField(
+                        obscureText: true,
                       onChanged: (value){
                         password= value;
                       },
