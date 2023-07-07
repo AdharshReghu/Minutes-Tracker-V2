@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'views/starting.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'services/authservices.dart';
+import 'routes.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,11 +18,12 @@ class MinutesTracker extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: AppRoutes.home,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Starting(),
+      home: AuthService().HandleAuthState(),
     );
   }
 }

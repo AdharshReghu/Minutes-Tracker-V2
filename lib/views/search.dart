@@ -40,18 +40,24 @@ class search extends StatelessWidget {
         final date = meet.data()['date'];
         final meetId = meet.data()['meetID'];
         final subject = meet.data()['subject'];
+        final category = meet.data()['category'];
+        final location = meet.data()['location'];
+        final participants = meet.data()['participants'];
 
         if (date != null &&
             meetId != null &&
+            category != null &&
+            location != null &&
+            participants != null &&
             subject != null &&
             (date.toLowerCase().contains(searchTerm.value.toLowerCase()) ||
+                category.toLowerCase().contains(searchTerm.value.toLowerCase()) ||
+                location.toLowerCase().contains(searchTerm.value.toLowerCase()) ||
+                participants.toLowerCase().contains(searchTerm.value.toLowerCase()) ||
                 meetId.toLowerCase().contains(searchTerm.value.toLowerCase()) ||
                 subject.toLowerCase().contains(searchTerm.value.toLowerCase()))) {
           final numParticipants = meet.data()['Number of participants'];
           final agenda = meet.data()['agenda'];
-          final category = meet.data()['category'];
-          final location = meet.data()['location'];
-          final participants = meet.data()['participants'];
           final time = meet.data()['time'];
 
           meetingCards.add(meetings(
@@ -92,7 +98,7 @@ class search extends StatelessWidget {
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    "Search with MeetId or Date(DD-MMM-YY) or subject",
+                    "Note: While searching with date, Enter the date in correct format(DD-MM-YYYY)",
                     style: kGreyTextStyle,
                   ),
                 ),

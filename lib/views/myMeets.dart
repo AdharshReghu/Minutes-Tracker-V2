@@ -29,7 +29,7 @@ class Mymeets extends StatelessWidget {
           child: Container(
             color: Colors.white,
             padding: EdgeInsets.all(20),
-            //height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [

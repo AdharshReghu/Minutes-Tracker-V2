@@ -127,7 +127,7 @@ class CreateMeet extends StatelessWidget {
                 } else {
                   return null;
                 }
-              },decoration: kTextFieldCreate.copyWith(hintText: "Enter Date (Formate : DD-MMM-YY)"),),
+              },decoration: kTextFieldCreate.copyWith(hintText: "Enter Date (Formate : DD-MM-YYYY)"),),
               SizedBox(height: 15,),
               const Text("Time: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
               SizedBox(height: 10,),
