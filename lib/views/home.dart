@@ -5,6 +5,7 @@ import 'CreateMeeting.dart';
 import 'search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login.dart';
+import 'myMeets.dart';
 
 
 void main(){
@@ -48,9 +49,14 @@ class Home extends StatelessWidget {
             SizedBox(height: 5,),
             Text("Create Meeting",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
             SizedBox(height: 30,),
+            InkWell(child: Container(child: Image.asset('./assets/meetings.png'),),onTap: (){Get.to(()=>Mymeets());},),
+            SizedBox(height: 5,),
+            Text("My Meets",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
+            SizedBox(height: 30,),
             InkWell(child: Container(child: Image.asset('./assets/scan.png'),),onTap: (){},),
             SizedBox(height: 5,),
             Text("Scan",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
+
           ],
         ),
       ),

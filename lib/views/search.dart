@@ -11,6 +11,7 @@ class search extends StatelessWidget {
   final _searchkey = GlobalKey<FormState>();
    final _firestore = FirebaseFirestore.instance;
    late String? userUid;
+   late String searchTerm;
    void getUserUid() {
      final User? user = FirebaseAuth.instance.currentUser;
      if (user != null) {
@@ -42,10 +43,10 @@ class search extends StatelessWidget {
                     ),
                     alignment: Alignment.topLeft,
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   Align(alignment: Alignment.topLeft,child: Text("Search with MeetId or Date(DD-MMM-YY) or subject",style: kGreyTextStyle,)),
-                  SizedBox(height: 10),
-                  Container(
+                  const SizedBox(height: 10),
+                  SizedBox(
                     width: double.infinity,
                     child: Row(
                       children: [
@@ -53,7 +54,11 @@ class search extends StatelessWidget {
                           child: Form(
                             key: _searchkey,
                             child: TextFormField(
+                              onChanged: (value){
+                                searchTerm = value;
+                              },
                               validator: (value) {
+
                                 if (value!.isEmpty){
                                   return "Enter Date,Subject or MeetID to search!";
                                 } else {
@@ -66,12 +71,12 @@ class search extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         InkWell(child: Icon(Icons.search,size: 50,color: kMaintheme,),onTap: (){if (_searchkey.currentState!.validate()) {}})
                       ],
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                     stream: _firestore.collection('Meet').snapshots(),
                     builder: (context, snapshot) {
