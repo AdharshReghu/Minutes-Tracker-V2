@@ -36,22 +36,61 @@ class meetings extends StatelessWidget {
           children: [
             Align(child: Text("MEET ID: $meetId",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),alignment: Alignment.center,),
             SizedBox(height: 20,),
-            Text("Subject : $subject",style: TextStyle(fontSize: 15),),
+            Row(
+              children: [
+                Text("Subject : ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                Text("$subject",style: TextStyle(fontSize: 15),),
+              ],
+            ),
             SizedBox(height: 10,),
-            Text("Location: $location",style: TextStyle(fontSize: 15),),
-            SizedBox(height: 10,),
-            Text("Date: $date",style: TextStyle(fontSize: 15),),
-            SizedBox(height: 10,),
-            Text("Time: $time",style: TextStyle(fontSize: 15),),
-            SizedBox(height: 10,),
-            Text("Category: $category",style: TextStyle(fontSize: 15),),
-            SizedBox(height: 10,),
-            Text("Number of participants: $numberParticipants",style: TextStyle(fontSize: 15),),
-            SizedBox(height: 10,),
-            Text("participants: $participants",style: TextStyle(fontSize: 15),),
-            SizedBox(height: 10,),
-            Text("Agenda: $agenda",style: TextStyle(fontSize: 15),),
+            Row(
+              children: [
+                Text("Location : ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                Text("$location",style: TextStyle(fontSize: 15),),
+              ],
+            ),
 
+            SizedBox(height: 10,),
+            Row(
+              children: [
+                Text("Date : ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                Text("$date",style: TextStyle(fontSize: 15),),
+              ],
+            ),
+            SizedBox(height: 10,),
+            Row(
+              children: [
+                Text("Time : ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                Text("$time",style: TextStyle(fontSize: 15),),
+              ],
+            ),
+            SizedBox(height: 10,),
+            Row(
+              children: [
+                Text("Category : ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                Text("$category",style: TextStyle(fontSize: 15),),
+              ],
+            ),
+            SizedBox(height: 10,),
+            Row(
+              children: [
+                Text("Number of Participants : ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                Text("$numberParticipants",style: TextStyle(fontSize: 15),),
+              ],
+            ),
+            SizedBox(height: 10,),
+            Row(
+              children: [
+                Text("Location : ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                Text("$location",style: TextStyle(fontSize: 15),),
+              ],
+            ),
+            SizedBox(height: 10,),
+            Text("participants: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+            Text("$participants",style: TextStyle(fontSize: 15),),
+            SizedBox(height: 10,),
+            Text("Agenda: ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+            Text("$agenda",style: TextStyle(fontSize: 15),),
           ],
         ),
       ),
