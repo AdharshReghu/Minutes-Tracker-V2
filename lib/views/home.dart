@@ -6,6 +6,7 @@ import 'search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login.dart';
 import 'myMeets.dart';
+import'package:minutes_tracker/controller/pdf controller.dart';
 
 
 void main(){
@@ -14,6 +15,7 @@ void main(){
 
 class Home extends StatelessWidget {
   Home({super.key});
+  final  _controller = Get.put(pdf_controller());
   final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class Home extends StatelessWidget {
             SizedBox(height: 5,),
             Text("My Meets",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
             SizedBox(height: 30,),
-            InkWell(child: Container(child: Image.asset('./assets/scan.png'),),onTap: (){},),
+            InkWell(child: Container(child: Image.asset('./assets/scan.png'),),onTap: (){_controller.selectPdf();},),
             SizedBox(height: 5,),
             Text("Scan",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
 

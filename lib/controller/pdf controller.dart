@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:read_pdf_text/read_pdf_text.dart';
+import 'package:minutes_tracker/views/scanResult.dart';
 
 class pdf_controller extends GetxController {
   RxString pdfText = ''.obs;
@@ -14,6 +15,7 @@ class pdf_controller extends GetxController {
       Get.snackbar("Error", "Failed to get PDF text.");
     }
     pdfText.value = text;
+    Get.to(()=>ScanResults(),arguments: pdfText.value);
   }
 
   void selectPdf() async {
