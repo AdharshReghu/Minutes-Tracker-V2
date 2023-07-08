@@ -24,7 +24,7 @@ class scanModel extends StatelessWidget {
         width: double.infinity,
         child: Column(
           children: [Text("#id: $id",style: TextStyle(fontWeight: FontWeight.bold),),SizedBox(height: 20,),
-            Text("$data"),
+            Text("$data",style: TextStyle(fontSize: 15),),
           ],
         ),
       ),

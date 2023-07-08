@@ -77,12 +77,12 @@ class MyScans extends StatelessWidget {
                       child:  SizedBox(
                         height: 500,
                         width: double.infinity,
-                        child: PageView.builder(
+                        child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           itemCount: ScanCards.length,
                           itemBuilder: (BuildContext context, int index) {
                             final meet = ScanCards[index];
-                            return SizedBox(height: 500,child: meet,);
+                            return SingleChildScrollView(child: meet,);
                           },
                         ),
                       ),),
