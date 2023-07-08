@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'login.dart';
 import 'myMeets.dart';
 import'package:minutes_tracker/controller/pdf controller.dart';
+import 'myScans.dart';
 
 
 void main(){
@@ -43,21 +44,32 @@ class Home extends StatelessWidget {
             ],
           ),
             SizedBox(height: 30,),
-            InkWell(child: Container(child: Image.asset('./assets/search.png'),),onTap: (){Get.to(()=>search());},),
-            SizedBox(height: 5,),
-            Text("Search",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
-            SizedBox(height: 30,),
             InkWell(child: Container(child: Image.asset('./assets/createM.png'),),onTap: (){Get.to(()=>CreateMeet());},),
             SizedBox(height: 5,),
-            Text("Create Meeting",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
+            Text("Create Meetings",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
             SizedBox(height: 30,),
             InkWell(child: Container(child: Image.asset('./assets/meetings.png'),),onTap: (){Get.to(()=>Mymeets());},),
             SizedBox(height: 5,),
-            Text("My Meets",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
+            Text("My Meetings",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
+            SizedBox(height: 30,),
+            InkWell(child: Container(child: Image.asset('./assets/search.png'),),onTap: (){Get.to(()=>search());},),
+            SizedBox(height: 5,),
+            Text("Search Meetings",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
             SizedBox(height: 30,),
             InkWell(child: Container(child: Image.asset('./assets/scan.png'),),onTap: (){_controller.selectPdf();},),
             SizedBox(height: 5,),
             Text("Scan",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
+            SizedBox(height: 30,),
+            InkWell(child: Container(child: Image.asset('./assets/search_scan.png'),),onTap: (){},),
+            SizedBox(height: 5,),
+            Text("Search Scans",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
+            SizedBox(height: 30,),
+            InkWell(child: Container(child: Image.asset('./assets/my scans'
+                '.png'),),onTap: (){Get.to(()=>MyScans());},),
+            SizedBox(height: 5,),
+            Text("My scans",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
+            SizedBox(height: 30,),
+
 
           ],
         ),

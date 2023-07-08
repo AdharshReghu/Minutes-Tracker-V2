@@ -62,7 +62,8 @@ class ScanResults extends StatelessWidget {
                     FirebaseFirestore firestore = FirebaseFirestore.instance;
                     CollectionReference scanCollection = firestore.collection('scans');
                     scanCollection.add(
-                      {'data': data,}
+                      {'data': data,
+                      'uid':uId}
                     ).then((value) {
                       Get.snackbar("Success", "Scan Stored Successfully");
                       Get.offAll(()=>Home());

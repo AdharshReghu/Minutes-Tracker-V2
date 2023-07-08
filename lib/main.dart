@@ -21,13 +21,13 @@ class MinutesTracker extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.home,
-      title: 'Minutes Tracker',
+      title: 'Meet Master',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: EasySplashScreen(
         logoWidth: 80,
-        title: Text("Minutes Tracker",style: TextStyle(color: kMaintheme,fontSize: 30),),
+        title: Text("Meet Master",style: TextStyle(color: kMaintheme,fontSize: 30),),
         logo: Image.asset('./assets/icon.png'), // Replace with your own logo image path
         navigator: AuthService().HandleAuthState(),
         durationInSeconds: 5, // Set the duration of the splash screen
