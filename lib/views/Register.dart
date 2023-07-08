@@ -15,6 +15,7 @@ class Register extends StatelessWidget {
   late String email;
   late String password;
   late String name;
+  late String confirmPassword;
   final _Registerkey = GlobalKey<FormState>();
 
 
@@ -49,11 +50,11 @@ class Register extends StatelessWidget {
                     TextFormField(
                       keyboardType: TextInputType.name,
                       textAlign: TextAlign.center,
-                      onChanged: (value){
-                        name= value;
+                      onChanged: (value) {
+                        name = value;
                       },
                       validator: (value) {
-                        if (value!.isEmpty ) {
+                        if (value!.isEmpty) {
                           return "Enter Correct Name";
                         } else {
                           return null;
@@ -70,8 +71,8 @@ class Register extends StatelessWidget {
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.center,
-                      onChanged: (value){
-                        email= value;
+                      onChanged: (value) {
+                        email = value;
                       },
                       validator: (value) {
                         if (value!.isEmpty ||
@@ -93,8 +94,8 @@ class Register extends StatelessWidget {
                     TextFormField(
                       obscureText: true,
                       textAlign: TextAlign.center,
-                      onChanged: (value){
-                        password= value;
+                      onChanged: (value) {
+                        password = value;
                       },
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -104,6 +105,29 @@ class Register extends StatelessWidget {
                         }
                       },
                       decoration: kTextFieldDecoration.copyWith(hintText: "Create Your Password"),
+                    ),
+                    SizedBox(height: 25),
+                    Align(
+                      child: Text("Confirm Password", style: kGreyTextStyle),
+                      alignment: Alignment.centerLeft,
+                    ),
+                    SizedBox(height: 10),
+                    TextFormField(
+                      obscureText: true,
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        confirmPassword = value;
+                      },
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Confirm Your Password";
+                        } else if (value != password) {
+                          return "Passwords do not match";
+                        } else {
+                          return null;
+                        }
+                      },
+                      decoration: kTextFieldDecoration.copyWith(hintText: "Confirm Your Password"),
                     ),
                     SizedBox(height: 30),
                     Container(
@@ -118,19 +142,19 @@ class Register extends StatelessWidget {
                           backgroundColor: MaterialStateProperty.all<Color>(kMaintheme),
                           fixedSize: MaterialStateProperty.all<Size>(Size(double.infinity, 50)),
                         ),
-                        onPressed: () async{
+                        onPressed: () async {
                           if (_Registerkey.currentState!.validate()) {
                             // Perform registration logic here
                             try {
-                              final newUser = await _auth
-                                  .createUserWithEmailAndPassword(
+                              final newUser = await _auth.createUserWithEmailAndPassword(
                                   email: email, password: password);
-                              if(newUser != null)
-                                {
-                                  Get.snackbar("Success", "Account Registered Successfully");
-                                  Get.off(()=>Login(),transition: Transition.rightToLeft,duration: Duration(milliseconds: 500));
-                                }
-                            }catch(e){
+                              if (newUser != null) {
+                                Get.snackbar("Success", "Account Registered Successfully");
+                                Get.off(() => Login(),
+                                    transition: Transition.rightToLeft,
+                                    duration: Duration(milliseconds: 500));
+                              }
+                            } catch (e) {
                               Get.snackbar("Error", "$e");
                             }
                           }
@@ -141,7 +165,7 @@ class Register extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 20),
                     Text("Existing User?", style: kGreyTextStyle),
                     InkWell(
                       child: Text("Log In", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
@@ -153,6 +177,7 @@ class Register extends StatelessWidget {
                     ),
                   ],
                 ),
+
               ),
             ),
           ),
