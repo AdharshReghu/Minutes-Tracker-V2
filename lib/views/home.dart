@@ -8,6 +8,7 @@ import 'login.dart';
 import 'myMeets.dart';
 import'package:minutes_tracker/controller/pdf controller.dart';
 import 'myScans.dart';
+import 'searchScans.dart';
 
 
 void main(){
@@ -60,7 +61,7 @@ class Home extends StatelessWidget {
             SizedBox(height: 5,),
             Text("Scan",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
             SizedBox(height: 30,),
-            InkWell(child: Container(child: Image.asset('./assets/search_scan.png'),),onTap: (){},),
+            InkWell(child: Container(child: Image.asset('./assets/search_scan.png'),),onTap: (){Get.to(SearchScans());},),
             SizedBox(height: 5,),
             Text("Search Scans",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15),),
             SizedBox(height: 30,),

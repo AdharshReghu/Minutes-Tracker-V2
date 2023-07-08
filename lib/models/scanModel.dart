@@ -12,6 +12,7 @@ class scanModel extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
+        padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
