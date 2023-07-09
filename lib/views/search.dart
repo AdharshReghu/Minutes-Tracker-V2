@@ -149,12 +149,12 @@ class search extends StatelessWidget {
                       child: SizedBox(
                         height: 500,
                         width: double.infinity,
-                        child: PageView.builder(
+                        child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           itemCount: meetingCards.length,
                           itemBuilder: (BuildContext context, int index) {
                             final meet = meetingCards[index];
-                            return SizedBox(height: 500, child: meet);
+                            return SingleChildScrollView( child: meet);
                           },
                         ),
                       ),
