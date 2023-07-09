@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
   final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(backgroundColor: Colors.white,body: SingleChildScrollView(
+    return SafeArea(child: Scaffold(body: SingleChildScrollView(
       child: Container(
         color: kMaintheme,
         padding: const EdgeInsets.all(20),
