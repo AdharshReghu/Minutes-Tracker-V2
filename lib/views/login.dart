@@ -20,7 +20,9 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(body: SingleChildScrollView(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
           child: Form(
             key: _loginkey,
             child: Container(

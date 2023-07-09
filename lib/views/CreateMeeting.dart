@@ -61,7 +61,7 @@ class CreateMeet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(child: Scaffold(body: SingleChildScrollView(
+    return  SafeArea(child: Scaffold(backgroundColor: Colors.white,body: SingleChildScrollView(
       child: Form(
         key: _meetkey,
         child: Container(

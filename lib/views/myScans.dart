@@ -28,7 +28,7 @@ class MyScans extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(body:
+    return SafeArea(child: Scaffold(backgroundColor: Colors.white,body:
       Container(
         padding: EdgeInsets.all(20),
         width: MediaQuery.of(context).size.width,
