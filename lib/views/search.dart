@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:minutes_tracker/constants/constants.dart';
 import 'package:get/get.dart';
 import 'package:minutes_tracker/models/meetingCardModel.dart';
-import '../models/meetingList.dart';
 
 class search extends StatelessWidget {
   final _searchkey = GlobalKey<FormState>();

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:minutes_tracker/views/home.dart';
 import 'Register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'resetPassword.dart';
 
 
 void main(){
@@ -76,7 +77,14 @@ class Login extends StatelessWidget {
                       },
                         decoration: kTextFieldDecoration.copyWith(hintText: "Enter Your Password")
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height:10,),
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(()=>Reset());
+                      },
+                      child: Text("Forget Password ?",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),),
+                    ),
+                    SizedBox(height: 25),
                     Container(
                       width: double.infinity,
                       child: ElevatedButton(
