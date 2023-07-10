@@ -16,6 +16,7 @@ class search extends StatelessWidget {
     getUserUid();
   }
 
+
   void getUserUid() {
     final User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
@@ -59,7 +60,7 @@ class search extends StatelessWidget {
           final agenda = meet.data()['agenda'];
           final time = meet.data()['time'];
 
-          meetingCards.add(meetings(
+          final meetingsObj = meetings(
             subject: subject,
             agenda: agenda,
             participants: participants,
@@ -69,7 +70,20 @@ class search extends StatelessWidget {
             location: location,
             meetId: meetId,
             numberParticipants: numParticipants,
-          ));
+          );
+
+          meetingCards.add(meetingsObj);
+
+          // Check if the search result is deleted
+          _firestore
+              .collection('Meet')
+              .doc(meet.id)
+              .snapshots()
+              .listen((DocumentSnapshot snapshot) {
+            if (!snapshot.exists) {
+              meetingCards.remove(meetingsObj);
+            }
+          });
         }
       });
     });
@@ -144,7 +158,7 @@ class search extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      height: 500,
+                      height: 600,
                       child: SizedBox(
                         height: 500,
                         width: double.infinity,

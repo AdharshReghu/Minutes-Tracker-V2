@@ -29,87 +29,89 @@ class MyScans extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(backgroundColor: Colors.white,body:
-      Container(
-        padding: EdgeInsets.all(20),
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: [
-            Align(
-              child: Text(
-                "My Scans",
-                style: kBlackHeadingSize,
+      SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(20),
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              Align(
+                child: Text(
+                  "My Scans",
+                  style: kBlackHeadingSize,
+                ),
+                alignment: Alignment.topLeft,
               ),
-              alignment: Alignment.topLeft,
-            ),
-            SizedBox(height: 50),
-            StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-              stream: _firestore.collection('scans').snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      backgroundColor: kMaintheme,
-                    ),
-                  );
-                }
-                final QuerySnapshot<Map<String, dynamic>>
-                querySnapshot = snapshot.data!;
-                final List<
-                    QueryDocumentSnapshot<Map<String, dynamic>>>
-                Scans = querySnapshot.docs;
-                ScanCards = [];
-                getUserUid();
-                for (var scan in Scans) {
-                  final uid = scan.data()['uid'];
-                  if (userUid == uid ) {
-                    final data =
-                    scan.data()['data'];
-                    final id = scan.id;
-
-                    ScanCards.add(scanModel(data: data,id: id,));
+              SizedBox(height: 50),
+              StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                stream: _firestore.collection('scans').snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: kMaintheme,
+                      ),
+                    );
                   }
-                }
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      height: 500,
-                      child:  SizedBox(
-                        height: 500,
-                        width: double.infinity,
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: ScanCards.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            final meet = ScanCards[index];
-                            return SingleChildScrollView(child: meet,);
-                          },
-                        ),
-                      ),),
-                  ],
-                );
-              },
-            ),
-      // Column(
-      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //   children: [
-      //     SizedBox(
-      //       height: 500,
-      //       child:  SizedBox(
-      //         height: 500,
-      //         width: double.infinity,
-      //         child: PageView.builder(
-      //           scrollDirection: Axis.vertical,
-      //           itemCount: ScanCards.length,
-      //           itemBuilder: (BuildContext context, int index) {
-      //             final meet = ScanCards[index];
-      //             return SizedBox(height: 500,child: meet,);
-      //           },
-      //         ),
-      //       ),),
-      //   ],
-      // )
-          ],
+                  final QuerySnapshot<Map<String, dynamic>>
+                  querySnapshot = snapshot.data!;
+                  final List<
+                      QueryDocumentSnapshot<Map<String, dynamic>>>
+                  Scans = querySnapshot.docs;
+                  ScanCards = [];
+                  getUserUid();
+                  for (var scan in Scans) {
+                    final uid = scan.data()['uid'];
+                    if (userUid == uid ) {
+                      final data =
+                      scan.data()['data'];
+                      final id = scan.id;
+
+                      ScanCards.add(scanModel(data: data,id: id,));
+                    }
+                  }
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: 600,
+                        child:  SizedBox(
+                          height: 500,
+                          width: double.infinity,
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount: ScanCards.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final meet = ScanCards[index];
+                              return SingleChildScrollView(child: meet,);
+                            },
+                          ),
+                        ),),
+                    ],
+                  );
+                },
+              ),
+        // Column(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SizedBox(
+        //       height: 500,
+        //       child:  SizedBox(
+        //         height: 500,
+        //         width: double.infinity,
+        //         child: PageView.builder(
+        //           scrollDirection: Axis.vertical,
+        //           itemCount: ScanCards.length,
+        //           itemBuilder: (BuildContext context, int index) {
+        //             final meet = ScanCards[index];
+        //             return SizedBox(height: 500,child: meet,);
+        //           },
+        //         ),
+        //       ),),
+        //   ],
+        // )
+            ],
+          ),
         ),
       )
       ,),);

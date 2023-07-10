@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:minutes_tracker/constants/constants.dart';
 
 class meetings extends StatelessWidget {
   String subject;
@@ -10,6 +12,20 @@ class meetings extends StatelessWidget {
   String category;
   String numberParticipants;
   String location;
+
+  void deleteDocument() {
+    FirebaseFirestore.instance
+        .collection('Meet')
+        .where('meetID', isEqualTo: meetId)
+        .get()
+        .then((snapshot) {
+      for (var doc in snapshot.docs) {
+        doc.reference.delete();
+        print("deleted");
+      }
+    });
+  }
+
 
   meetings({required this.subject,required this.agenda,required this.participants,required this.category,required this.time,required this.date,required this.location,required this.meetId,required this.numberParticipants}){
 
@@ -34,6 +50,9 @@ class meetings extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+          TextButton(
+          onPressed: deleteDocument,
+          child: Align(alignment: Alignment.topRight,child: Icon(Icons.delete,color: Colors.grey,)),),
             Align(child: Text("MEET ID: $meetId",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),alignment: Alignment.center,),
             SizedBox(height: 20,),
             Row(

@@ -40,15 +40,29 @@ class SearchScans extends StatelessWidget {
 
         if (data != null &&
             (data.toLowerCase().contains(searchTerm.value.toLowerCase()))) {
-                final id = scan.id;
-          scanCards.add(scanModel(
+          final id = scan.id;
+          final scanObj = scanModel(
             data: data,
-            id:id ,
-          ));
+            id: id,
+          );
+
+          scanCards.add(scanObj);
+
+          // Check if the search result is deleted
+          _firestore
+              .collection('scans')
+              .doc(scan.id)
+              .snapshots()
+              .listen((DocumentSnapshot snapshot) {
+            if (!snapshot.exists) {
+              scanCards.remove(scanObj);
+            }
+          });
         }
       });
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +78,7 @@ class SearchScans extends StatelessWidget {
               children: [
                 Align(
                   child: Text(
-                    "Search",
+                    "Search Scans",
                     style: kBlackHeadingSize,
                   ),
                   alignment: Alignment.topLeft,
@@ -111,7 +125,7 @@ class SearchScans extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      height: 500,
+                      height: 600,
                       child: SizedBox(
                         height: 500,
                         width: double.infinity,

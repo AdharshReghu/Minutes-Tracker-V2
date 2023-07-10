@@ -1,11 +1,16 @@
-
+import 'package:minutes_tracker/views/searchScans.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 class scanModel extends StatelessWidget {
 
   String data;
   String id;
   scanModel({required this.data,required this.id});
+
+  void deleteDocument() {
+    FirebaseFirestore.instance.collection('scans').doc(id).delete();
+    print("Deleted");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,14 @@ class scanModel extends StatelessWidget {
         ),
         width: double.infinity,
         child: Column(
-          children: [Text("#id: $id",style: TextStyle(fontWeight: FontWeight.bold),),SizedBox(height: 20,),
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: TextButton(
+                onPressed: deleteDocument,
+                child:Icon(Icons.delete,color: Colors.grey,),),
+            ),
+            Text("#id: $id",style: TextStyle(fontWeight: FontWeight.bold),),SizedBox(height: 20,),
             Text("$data",style: TextStyle(fontSize: 15),),
           ],
         ),

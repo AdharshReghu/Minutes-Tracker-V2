@@ -30,10 +30,9 @@ class Register extends StatelessWidget {
             child: Container(
               color: Colors.white,
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              //height: MediaQuery.of(context).size.height,
               child: Container(
                 padding: EdgeInsets.all(20),
-                height: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -42,7 +41,7 @@ class Register extends StatelessWidget {
                       "Welcome Onboard !",
                       style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 50),
                     Align(
                       child: Text("Name", style: kGreyTextStyle),
                       alignment: Alignment.centerLeft,
@@ -130,7 +129,7 @@ class Register extends StatelessWidget {
                       },
                       decoration: kTextFieldDecoration.copyWith(hintText: "Confirm Your Password"),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 50),
                     Container(
                       width: double.infinity,
                       child: ElevatedButton(
